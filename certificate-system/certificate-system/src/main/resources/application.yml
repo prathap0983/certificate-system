@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://certificate-db-certificate.d.aivencloud.com:20191/defaultdb?sslMode=REQUIRED&serverTimezone=UTC}
+    username: ${DB_USERNAME:avnadmin}
+    password: ${DB_PASSWORD:your_aiven_password_here}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 40MB
+app:
+  jwt-secret: ${JWT_SECRET:replace-this-with-a-32-character-minimum-production-secret}
+  jwt-expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  upload-dir: ${UPLOAD_DIR:./uploads}

@@ -1,0 +1,1 @@
+package com.samudhra.certificates.repository; import com.samudhra.certificates.entity.CertificateHistory; import org.springframework.data.jpa.repository.JpaRepository; public interface CertificateHistoryRepository extends JpaRepository<CertificateHistory,String>{}

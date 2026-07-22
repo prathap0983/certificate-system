@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+MAVEN_VERSION=3.9.4
+MAVEN_DIR=".mvn/wrapper/apache-maven-$MAVEN_VERSION"
+if [ ! -x "$MAVEN_DIR/bin/mvn" ]; then
+  echo "Maven not found, downloading Apache Maven $MAVEN_VERSION..."
+  mkdir -p .mvn/wrapper
+  curl -fsSL -o .mvn/wrapper/apache-maven.zip "https://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.zip"
+  unzip -o .mvn/wrapper/apache-maven.zip -d .mvn/wrapper
+  rm .mvn/wrapper/apache-maven.zip
+fi
+"$MAVEN_DIR/bin/mvn" "$@"

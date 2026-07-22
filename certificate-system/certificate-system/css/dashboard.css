@@ -1,0 +1,280 @@
+/* ============================================
+   DASHBOARD-SPECIFIC STYLES
+   ============================================ */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.dashboard-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-section-title a {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Quick Actions */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.quick-action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+  cursor: pointer;
+  text-align: center;
+}
+
+.quick-action-card:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(21,101,192,0.25);
+}
+
+.quick-action-card:hover i { color: white; }
+.quick-action-card:hover span { color: white; }
+
+.quick-action-card i {
+  font-size: 28px;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.quick-action-card span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+/* Activity Timeline (dashboard refinements) */
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.activity-item:last-child { border-bottom: none; }
+
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.activity-icon.blue { background: var(--primary-bg); color: var(--primary); }
+.activity-icon.green { background: #D1FAE5; color: var(--success); }
+.activity-icon.orange { background: #FEF3C7; color: var(--warning); }
+.activity-icon.red { background: #FEE2E2; color: var(--error); }
+
+.activity-content { flex: 1; }
+.activity-text { font-size: 14px; color: var(--text-primary); margin-bottom: 2px; }
+.activity-text strong { font-weight: 600; }
+.activity-time { font-size: 12px; color: var(--text-muted); }
+
+/* Chart Bar improvements */
+.chart-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 200px;
+  gap: 8px;
+}
+
+.chart-bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  max-width: 40px;
+  border-radius: 4px 4px 0 0;
+  transition: var(--transition);
+  min-height: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.chart-bar:hover {
+  opacity: 0.8;
+}
+
+.chart-bar-value {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.chart-bar:hover .chart-bar-value {
+  opacity: 1;
+}
+
+.chart-bar-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+/* Donut chart placeholder */
+.donut-chart {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 12px solid var(--border);
+  border-top-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.donut-chart-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Recent Students table in dashboard */
+.recent-students-table td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recent-student-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Dashboard welcome */
+.welcome-banner {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  color: white;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  top: -60px;
+  right: -60px;
+}
+
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  bottom: -30px;
+  left: 30%;
+}
+
+.welcome-banner h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.welcome-banner p {
+  opacity: 0.9;
+  font-size: 15px;
+  position: relative;
+}
+
+/* Filter bar for tables */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filter-bar .search-bar {
+  max-width: 300px;
+}
+
+.filter-bar select {
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  background: var(--secondary);
+  color: var(--text-secondary);
+  min-width: 150px;
+}
+
+.filter-bar select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+}
+
+/* Table info */
+.table-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.table-info strong {
+  color: var(--text-primary);
+}

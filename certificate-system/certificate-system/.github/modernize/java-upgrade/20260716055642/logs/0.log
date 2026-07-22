@@ -1,0 +1,154 @@
+2026-07-16T05:56:42.060Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-07-16T05:56:42.060Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "precheckCompleted",
+  "phase": "precheck",
+  "status": "succeeded",
+  "details": {
+    "components": [
+      {
+        "name": "jdk",
+        "baseVersion": "21",
+        "targetVersion": "25"
+      }
+    ]
+  }
+}}).
+2026-07-16T05:56:42.060Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:56:42.062Z [INFO] Project c:\GAMES\Samudhra tech\Task\open ai\certificate\certificate-system\certificate-system is a maven project, try to get java version from pom.xml
+2026-07-16T05:56:42.064Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'precheckCompleted' reported!\nSession ID: 20260716055642,\nSession Dir: c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system\\.github\\modernize\\java-upgrade\\20260716055642"
+}}).
+2026-07-16T05:56:42.064Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-07-16T05:56:42.066Z [INFO] Project java version: 21
+2026-07-16T05:56:42.066Z [INFO] Maven project detected.
+2026-07-16T05:56:42.066Z [INFO] Build tool type: mvnw
+2026-07-16T05:56:42.114Z [INFO] JDK: undefined
+2026-07-16T05:56:42.114Z [ERROR] Failed to detect or resolve JDK for the project at c:\GAMES\Samudhra tech\Task\open ai\certificate\certificate-system\certificate-system.
+2026-07-16T05:56:42.114Z [WARN] [ReportEventTool] Full project info unavailable, attempting lightweight fallback: UserError: Failed to detect or resolve JDK for the project at c:\GAMES\Samudhra tech\Task\open ai\certificate\certificate-system\certificate-system. Please ensure JDK 21 is installed and properly configured on the machine.
+2026-07-16T05:56:42.116Z [INFO] Maven project detected.
+2026-07-16T05:56:42.116Z [INFO] Project c:\GAMES\Samudhra tech\Task\open ai\certificate\certificate-system\certificate-system is a maven project, try to get java version from pom.xml
+2026-07-16T05:56:49.616Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-07-16T05:56:49.617Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "planGenerationStarted",
+  "phase": "plan",
+  "status": "succeeded"
+}}).
+2026-07-16T05:56:49.617Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-07-16T05:56:49.617Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-07-16T05:56:49.618Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-07-16T05:56:49.634Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-07-16T05:56:49.634Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "planGenerationStarted",
+  "phase": "plan",
+  "status": "succeeded"
+}}).
+2026-07-16T05:56:49.634Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:56:49.635Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'planGenerationStarted' reported!\nSession ID: 20260716055642,\nSession Dir: c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system\\.github\\modernize\\java-upgrade\\20260716055642"
+}}).
+2026-07-16T05:56:49.635Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-07-16T05:56:49.643Z [INFO] ---------------------prepare appmod-list-jdks----------------------
+2026-07-16T05:56:49.644Z [INFO] [Tool.prepareInvocation]({name: appmod-list-jdks, input: {
+  "sessionId": "20260716055642"
+}}).
+2026-07-16T05:56:49.644Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-07-16T05:56:49.645Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "List jdks"
+}}).
+2026-07-16T05:56:49.645Z [INFO] ----------------------prepared appmod-list-jdks----------------------
+2026-07-16T05:56:49.666Z [INFO] ----------------------invoke appmod-list-jdks----------------------
+2026-07-16T05:56:49.667Z [INFO] [Tool.invoke]({name: appmod-list-jdks, modelId: auto, input: {
+  "sessionId": "20260716055642"
+}}).
+2026-07-16T05:56:49.667Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:56:49.674Z [INFO] [Tool.invoke]({result: {
+  "message": "We found following jdks in your system:\n\n1. Java 26.0.1\n   📁 Path: C:\\Program Files\\Java\\jdk-26.0.1\\bin\n   🏷️ Source: PATH,JAVA_HOME\n\nTotal: 1 JDK installation(s) found"
+}}).
+2026-07-16T05:56:49.674Z [INFO] ----------------------invoked appmod-list-jdks----------------------
+2026-07-16T05:56:49.681Z [INFO] ---------------------prepare appmod-list-mavens----------------------
+2026-07-16T05:56:49.682Z [INFO] [Tool.prepareInvocation]({name: appmod-list-mavens, input: {
+  "sessionId": "20260716055642"
+}}).
+2026-07-16T05:56:49.682Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-07-16T05:56:49.682Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "List mavens"
+}}).
+2026-07-16T05:56:49.682Z [INFO] ----------------------prepared appmod-list-mavens----------------------
+2026-07-16T05:56:49.705Z [INFO] ----------------------invoke appmod-list-mavens----------------------
+2026-07-16T05:56:49.705Z [INFO] [Tool.invoke]({name: appmod-list-mavens, modelId: auto, input: {
+  "sessionId": "20260716055642"
+}}).
+2026-07-16T05:56:49.705Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:56:49.709Z [INFO] [Tool.invoke]({result: {
+  "message": "No Maven installations found."
+}}).
+2026-07-16T05:56:49.709Z [INFO] ----------------------invoked appmod-list-mavens----------------------
+2026-07-16T05:57:38.116Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-07-16T05:57:38.116Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "planReviewed",
+  "phase": "plan",
+  "status": "succeeded"
+}}).
+2026-07-16T05:57:38.117Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-07-16T05:57:38.117Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-07-16T05:57:38.117Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-07-16T05:57:38.134Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-07-16T05:57:38.134Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "planReviewed",
+  "phase": "plan",
+  "status": "succeeded"
+}}).
+2026-07-16T05:57:38.134Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:57:38.135Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'planReviewed' reported!\nSession ID: 20260716055642,\nSession Dir: c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system\\.github\\modernize\\java-upgrade\\20260716055642"
+}}).
+2026-07-16T05:57:38.135Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-07-16T05:58:17.524Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-07-16T05:58:17.525Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "upgradeValidationCompleted",
+  "phase": "execute",
+  "status": "succeeded",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Final validation and summary",
+    "commitId": "N/A"
+  }
+}}).
+2026-07-16T05:58:17.525Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-07-16T05:58:17.525Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-07-16T05:58:17.526Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-07-16T05:58:17.566Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-07-16T05:58:17.566Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260716055642",
+  "projectPath": "c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system",
+  "event": "upgradeValidationCompleted",
+  "phase": "execute",
+  "status": "succeeded",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Final validation and summary",
+    "commitId": "N/A"
+  }
+}}).
+2026-07-16T05:58:17.567Z [INFO] [Tool.invoke] do invoke.
+2026-07-16T05:58:17.568Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'upgradeValidationCompleted' reported!\nSession ID: 20260716055642,\nSession Dir: c:\\GAMES\\Samudhra tech\\Task\\open ai\\certificate\\certificate-system\\certificate-system\\.github\\modernize\\java-upgrade\\20260716055642"
+}}).
+2026-07-16T05:58:17.568Z [INFO] ----------------------invoked appmod-report-event----------------------

@@ -1,0 +1,1 @@
+package com.samudhra.certificates.repository; import com.samudhra.certificates.entity.Upload; import org.springframework.data.jpa.repository.JpaRepository; public interface UploadRepository extends JpaRepository<Upload,String>{}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samudhra Tech Solutions - Certificate Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .landing-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--bg) 0%, var(--primary-bg) 100%); position: relative; overflow: hidden; }
+    .landing-content { text-align: center; z-index: 1; padding: 40px 20px; max-width: 600px; }
+    .landing-logo { width: 100px; height: 100px; background: var(--primary); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: white; font-size: 40px; font-weight: 800; margin: 0 auto 24px; box-shadow: 0 20px 60px rgba(21,101,192,0.3); }
+    .landing-content h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+    .landing-content h1 span { color: var(--primary); }
+    .landing-content p { color: var(--text-secondary); font-size: 16px; margin-bottom: 32px; }
+    .landing-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="floating-shapes">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
+  <div class="landing-page">
+    <div class="landing-content fade-in">
+      <div class="landing-logo">ST</div>
+      <h1>Welcome to <span>Samudhra Tech</span></h1>
+      <p>Enterprise Certificate Management System — Generate, manage, and verify digital certificates with ease.</p>
+      <div class="landing-buttons">
+        <a href="dashboard.html" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> Go to Dashboard</a>
+        <a href="dashboard.html" class="btn btn-outline btn-lg"><i class="fas fa-info-circle"></i> Open Dashboard</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    setTimeout(() => window.location.href = 'dashboard.html', 2000);
+  </script>
+</body>
+</html>
+

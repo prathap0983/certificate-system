@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates - Samudhra Tech Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&family=Nunito:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/designer.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">ST</div>
+        <div class="sidebar-brand">Samudhra <span>Tech</span></div>
+      </div>
+      <div class="sidebar-body">
+        <div class="sidebar-section-title">Main Menu</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+          <a href="students.html" class="sidebar-link"><i class="fas fa-user-graduate"></i><span>Students</span></a>
+          <a href="templates.html" class="sidebar-link active"><i class="fas fa-layer-group"></i><span>Templates</span></a>
+          <a href="generate.html" class="sidebar-link"><i class="fas fa-certificate"></i><span>Generate</span></a>
+          <a href="verification.html" class="sidebar-link"><i class="fas fa-check-double"></i><span>Verification</span></a>
+          <a href="reports.html" class="sidebar-link"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+        </nav>
+        <div class="sidebar-section-title">Other</div>
+        <nav class="sidebar-nav">
+          <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+          <a href="profile.html" class="sidebar-link"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+        </nav>
+      </div>
+
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="main-content" id="mainContent">
+      <nav class="navbar" id="navbar">
+        <div class="navbar-left">
+          <button class="navbar-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+          <button class="navbar-toggle" id="sidebarToggle"><i class="fas fa-chevron-left"></i></button>
+          <div class="navbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search templates..." id="templateSearch">
+          </div>
+        </div>
+        <div class="navbar-right">
+          <button class="navbar-btn" id="mobileSearchToggle"><i class="fas fa-search"></i></button>
+          <button class="navbar-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+          <button class="navbar-btn"><i class="fas fa-bell"></i><span class="notification-dot"></span></button>
+          <div class="navbar-profile">
+            <div class="avatar-placeholder">A</div>
+            <div class="navbar-profile-info">
+              <div class="navbar-profile-name">Admin User</div>
+              <div class="navbar-profile-role">Administrator</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="page-content">
+        <div class="breadcrumb">
+          <a href="dashboard.html">Dashboard</a>
+          <span class="separator"><i class="fas fa-chevron-right"></i></span>
+          <span>Certificate Templates</span>
+        </div>
+
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Certificate <span>Templates</span></h1>
+            <p style="color:var(--text-muted);font-size:14px;margin-top:4px">Create and manage certificate templates</p>
+          </div>
+          <button class="btn btn-primary" onclick="Templates.openAddModal()"><i class="fas fa-plus"></i> Add Template</button>
+        </div>
+
+        <div id="templateCategories"></div>
+
+        <div class="filter-bar">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search by name or category..." id="templateSearchFilter">
+          </div>
+          <select id="templateSort">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="alpha">Alphabetical</option>
+          </select>
+        </div>
+
+        <div class="template-grid" id="templateGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template Modal -->
+  <div class="modal-overlay" id="templateModal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title" id="templateModalTitle">Add New Template</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Template Name *</label>
+            <input type="text" class="form-input" id="templateName" placeholder="e.g. Internship Certificate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select class="form-select" id="templateCategory">
+              <option value="">Select category</option>
+              <option value="Internship">Internship</option>
+              <option value="Course">Course</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="templateDescription" placeholder="Brief description of this template"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Orientation</label>
+            <select class="form-select" id="templateOrientation">
+              <option value="Landscape">Landscape</option>
+              <option value="Portrait">Portrait</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Paper Size</label>
+            <select class="form-select" id="templatePaperSize">
+              <option value="A4">A4</option>
+              <option value="Letter">Letter</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="templateStatus">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="document.getElementById('templateModal').classList.remove('active');document.body.style.overflow=''">Cancel</button>
+        <button class="btn btn-primary" onclick="Templates.saveTemplate()"><i class="fas fa-save"></i> Save Template</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template Preview Modal -->
+  <div class="modal-overlay" id="templatePreviewModal">
+    <div class="modal modal-xl">
+      <div class="modal-header">
+        <h3 class="modal-title">Template Preview</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="document.getElementById('templatePreviewModal').classList.remove('active');document.body.style.overflow=''">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title">Confirm</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN TEMPLATE VISUAL DESIGNER -->
+  <div class="designer-container" id="designerContainer">
+    <!-- Top Header -->
+    <header class="designer-header">
+      <div class="designer-title-section">
+        <button class="designer-back-btn" onclick="Designer.close()" title="Exit Designer">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="designer-title-inputs">
+          <input type="text" id="designerTemplateName" class="designer-template-name-input" value="Untitled Template">
+          <span style="font-size:11px;color:var(--text-muted);padding-left:6px">STS Certificate Designer</span>
+        </div>
+      </div>
+      
+      <div class="designer-header-actions">
+        <button class="btn btn-sm btn-outline" onclick="Designer.saveTemplate('Draft')">
+          <i class="fas fa-save"></i> Save Draft
+        </button>
+        <button class="btn btn-sm btn-outline" onclick="Designer.saveTemplate('Archived')" style="color:var(--warning)">
+          <i class="fas fa-archive"></i> Archive
+        </button>
+        <button class="btn btn-sm btn-primary" onclick="Designer.saveTemplate('Active')">
+          <i class="fas fa-paper-plane"></i> Publish Template
+        </button>
+      </div>
+    </header>
+
+    <!-- Split Main Layout -->
+    <div class="designer-main">
+      <!-- Left Controls Sidebar -->
+      <aside class="designer-sidebar">
+        <!-- Sidebar Navigation Tabs -->
+        <div class="designer-tabs">
+          <button class="designer-tab-btn active" data-tab="tabElements">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>Elements</span>
+          </button>
+          <button class="designer-tab-btn" data-tab="tabDesign">
+            <i class="fas fa-palette"></i>
+            <span>Design</span>
+          </button>
+          <button class="designer-tab-btn" data-tab="tabLayers">
+            <i class="fas fa-layer-group"></i>
+            <span>Layers</span>
+          </button>
+        </div>
+
+        <!-- Sidebar Panes content wrapper -->
+        <div class="designer-tab-content-wrapper">
+          <!-- Elements & Brand Assets Panel -->
+          <div class="designer-tab-pane active" id="tabElements">
+            <div class="designer-section-label">Dynamic Placeholders</div>
+            <p style="font-size:11px;color:var(--text-muted);margin-bottom:12px">Click placeholder badge to insert field into canvas.</p>
+            <div class="variables-grid">
+              <div class="variable-badge" data-variable="{{StudentName}}">Student Name</div>
+              <div class="variable-badge" data-variable="{{RegisterNumber}}" style="display:none;">Register No</div>
+              <div class="variable-badge" data-variable="{{College}}">College Name</div>
+              <div class="variable-badge" data-variable="{{Department}}">Department</div>
+              <div class="variable-badge" data-variable="{{Course}}">Course Name</div>
+              <div class="variable-badge" data-variable="{{InternshipTitle}}">Internship</div>
+              <div class="variable-badge" data-variable="{{Duration}}">Duration</div>
+              <div class="variable-badge" data-variable="{{StartDate}}">Start Date</div>
+              <div class="variable-badge" data-variable="{{EndDate}}">End Date</div>
+              <div class="variable-badge" data-variable="{{IssueDate}}">Issue Date</div>
+              <div class="variable-badge" data-variable="{{CertificateID}}">Certificate ID</div>
+              <div class="variable-badge" data-variable="{{CompanyName}}">Company Name</div>
+              <div class="variable-badge" data-variable="{{GuideName}}">Guide Name</div>
+              <div class="variable-badge" data-variable="{{QR}}">QR Code Variable</div>
+            </div>
+
+            <div class="designer-section-label">Add Elements</div>
+            <button class="btn btn-primary btn-block" style="margin-bottom:10px" onclick="Designer.addNewTextElement()">
+              <i class="fas fa-plus"></i> Add Free Text Field
+            </button>
+            <button class="btn btn-outline btn-block" style="margin-bottom:10px" onclick="Designer.addNewLogoElement()">
+              <i class="fas fa-image"></i> Add Logo Field
+            </button>
+            <button class="btn btn-outline btn-block" style="margin-bottom:10px" onclick="Designer.addNewSignatureElement()">
+              <i class="fas fa-signature"></i> Add Signature Field
+            </button>
+            <button class="btn btn-outline btn-block" style="margin-bottom:10px" onclick="Designer.addNewSealElement()">
+              <i class="fas fa-stamp"></i> Add Seal Field
+            </button>
+          </div>
+
+          <!-- DESIGN TAB: All collapsible design sections with Save buttons -->
+          <div class="designer-tab-pane" id="tabDesign">
+            <!-- BACKGROUND -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-image" style="width:18px"></i> Background</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body">
+                <div class="form-group">
+                  <label class="form-label">Solid Color</label>
+                  <input type="color" class="form-input" id="bgColorInput" value="#FFFFFF" style="padding:2px 6px; height:38px;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Gradient Overlays</label>
+                  <div class="gradient-presets" id="bgGradients">
+                    <div class="gradient-preset-box" data-gradient="linear-gradient(135deg,#F5F9FF 0%,#E3F2FD 100%)" style="background:linear-gradient(135deg,#F5F9FF 0%,#E3F2FD 100%)"></div>
+                    <div class="gradient-preset-box" data-gradient="linear-gradient(135deg,#FFF9E6 0%,#FFF3CD 100%)" style="background:linear-gradient(135deg,#FFF9E6 0%,#FFF3CD 100%)"></div>
+                    <div class="gradient-preset-box" data-gradient="linear-gradient(135deg,#E6FFFA 0%,#B2F5EA 100%)" style="background:linear-gradient(135deg,#E6FFFA 0%,#B2F5EA 100%)"></div>
+                    <div class="gradient-preset-box" data-gradient="linear-gradient(135deg,#F3E8FF 0%,#E9D5FF 100%)" style="background:linear-gradient(135deg,#F3E8FF 0%,#E9D5FF 100%)"></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Background Image</label>
+                  <div class="designer-dropzone" id="bgDropZone">
+                    <div class="designer-dropzone-content" id="bgDropContent">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                      <span>Drop image here or click to upload</span>
+                      <span class="dz-sub">JPG, JPEG, PNG, WebP &bull; Max 5MB</span>
+                    </div>
+                    <div class="designer-dropzone-preview" id="bgDropPreview">
+                      <img id="bgPreviewImg" alt="Background preview">
+                    </div>
+                  </div>
+                  <input type="file" id="customBgUpload" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+                  <div class="designer-dropzone-actions" id="bgActions" style="display:none">
+                    <button class="btn btn-sm btn-outline" onclick="Designer.replaceBgImage()"><i class="fas fa-exchange-alt"></i> Replace</button>
+                    <button class="btn btn-sm btn-outline" onclick="Designer.removeBgImage()"><i class="fas fa-times"></i> Remove</button>
+                    <button class="btn btn-sm btn-outline" onclick="Designer.resetBgImage()"><i class="fas fa-undo"></i> Reset</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Image Fitting</label>
+                  <select class="form-select" id="bgSizeSelect">
+                    <option value="cover">Cover / Stretch</option>
+                    <option value="contain">Fit / Contain</option>
+                    <option value="repeat">Pattern Repeat</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Backdrop Opacity</label>
+                  <input type="range" class="form-input" id="bgOpacityRange" min="10" max="100" value="100">
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveSection('background')"><i class="fas fa-save"></i> Save Background</button>
+              </div>
+            </div>
+
+            <!-- LOGO -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-building" style="width:18px"></i> Logo</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body" id="logoSectionBody">
+                <div class="designer-image-preview-card" id="logoPreviewCard" style="display:none">
+                  <img id="logoPreviewImg" alt="Logo">
+                  <div class="designer-image-preview-info">
+                    <div class="name" id="logoFileName">logo.png</div>
+                    <div class="size" id="logoFileSize">0 KB</div>
+                  </div>
+                  <div class="designer-image-preview-actions">
+                    <button onclick="Designer.removeBrandElement('logo')" class="btn-danger" title="Remove"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="designer-dropzone" id="logoDropZone">
+                  <div class="designer-dropzone-content">
+                    <i class="fas fa-file-image"></i>
+                    <span>Upload Logo</span>
+                    <span class="dz-sub">JPG, PNG, WebP &bull; Max 5MB</span>
+                  </div>
+                </div>
+                <input type="file" id="logoUploadInput" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+                <div class="designer-size-row">
+                  <div class="form-group">
+                    <label class="form-label">Width (px)</label>
+                    <input type="number" class="form-input" id="logoWidth" value="120" min="20" max="500">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (px)</label>
+                    <input type="number" class="form-input" id="logoHeight" value="60" min="20" max="500">
+                  </div>
+                </div>
+                <div class="designer-toggle">
+                  <label>Lock Position</label>
+                  <div class="designer-toggle-switch">
+                    <input type="checkbox" id="logoLockToggle">
+                    <span class="designer-toggle-slider"></span>
+                  </div>
+                  <label>Lock</label>
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveSection('logo')"><i class="fas fa-save"></i> Save Logo</button>
+              </div>
+            </div>
+
+            <!-- SIGNATURE -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-pen-fancy" style="width:18px"></i> Signature</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body" id="signatureSectionBody">
+                <div class="designer-image-preview-card" id="sigPreviewCard" style="display:none">
+                  <img id="sigPreviewImg" alt="Signature">
+                  <div class="designer-image-preview-info">
+                    <div class="name" id="sigFileName">signature.png</div>
+                    <div class="size" id="sigFileSize">0 KB</div>
+                  </div>
+                  <div class="designer-image-preview-actions">
+                    <button onclick="Designer.removeBrandElement('signature')" class="btn-danger" title="Remove"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="designer-dropzone" id="sigDropZone">
+                  <div class="designer-dropzone-content">
+                    <i class="fas fa-signature"></i>
+                    <span>Upload Signature</span>
+                    <span class="dz-sub">JPG, PNG, WebP &bull; Max 5MB</span>
+                  </div>
+                </div>
+                <input type="file" id="sigUploadInput" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+                <div class="designer-size-row">
+                  <div class="form-group">
+                    <label class="form-label">Width (px)</label>
+                    <input type="number" class="form-input" id="sigWidth" value="160" min="20" max="500">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (px)</label>
+                    <input type="number" class="form-input" id="sigHeight" value="60" min="20" max="500">
+                  </div>
+                </div>
+                <div class="designer-toggle">
+                  <label>Lock Position</label>
+                  <div class="designer-toggle-switch">
+                    <input type="checkbox" id="sigLockToggle">
+                    <span class="designer-toggle-slider"></span>
+                  </div>
+                  <label>Lock</label>
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveSection('signature')"><i class="fas fa-save"></i> Save Signature</button>
+              </div>
+            </div>
+
+            <!-- COMPANY SEAL -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-stamp" style="width:18px"></i> Company Seal</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body" id="sealSectionBody">
+                <div class="designer-image-preview-card" id="sealPreviewCard" style="display:none">
+                  <img id="sealPreviewImg" alt="Seal">
+                  <div class="designer-image-preview-info">
+                    <div class="name" id="sealFileName">seal.png</div>
+                    <div class="size" id="sealFileSize">0 KB</div>
+                  </div>
+                  <div class="designer-image-preview-actions">
+                    <button onclick="Designer.removeBrandElement('seal')" class="btn-danger" title="Remove"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="designer-dropzone" id="sealDropZone">
+                  <div class="designer-dropzone-content">
+                    <i class="fas fa-stamp"></i>
+                    <span>Upload Official Seal</span>
+                    <span class="dz-sub">JPG, PNG, WebP &bull; Max 5MB</span>
+                  </div>
+                </div>
+                <input type="file" id="sealUploadInput" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+                <div class="designer-size-row">
+                  <div class="form-group">
+                    <label class="form-label">Width (px)</label>
+                    <input type="number" class="form-input" id="sealWidth" value="100" min="20" max="500">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (px)</label>
+                    <input type="number" class="form-input" id="sealHeight" value="100" min="20" max="500">
+                  </div>
+                </div>
+                <div class="designer-toggle">
+                  <label>Lock Position</label>
+                  <div class="designer-toggle-switch">
+                    <input type="checkbox" id="sealLockToggle">
+                    <span class="designer-toggle-slider"></span>
+                  </div>
+                  <label>Lock</label>
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveSection('seal')"><i class="fas fa-save"></i> Save Seal</button>
+              </div>
+            </div>
+
+            <!-- SELECTED TEXT PROPERTIES -->
+            <div class="designer-collapsible-section text-properties-section" id="textPropertiesSection">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-pen-fancy" style="width:18px"></i> Selected Text Properties</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body">
+                <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px">Select a text element on the canvas to edit its properties here.</p>
+                <div class="form-group">
+                  <label class="form-label">Text Content</label>
+                  <textarea class="form-textarea" id="textInputContent" placeholder="Enter text field content..." rows="2"></textarea>
+                </div>
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">Font Family</label>
+                    <select class="form-select" id="textFontFamily"></select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Font Size</label>
+                    <input type="number" class="form-input" id="textFontSize" value="16" min="8" max="120">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Font Color</label>
+                    <input type="color" class="form-input" id="textColorInput" value="#1A1A2E" style="padding:2px 6px;height:38px;">
+                  </div>
+                </div>
+                <div class="font-btn-row">
+                  <button class="font-style-toggle" id="btnBold" title="Bold"><i class="fas fa-bold"></i></button>
+                  <button class="font-style-toggle" id="btnItalic" title="Italic"><i class="fas fa-italic"></i></button>
+                  <button class="font-style-toggle" id="btnUnderline" title="Underline"><i class="fas fa-underline"></i></button>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Text Transform</label>
+                  <div style="display:flex;gap:4px">
+                    <button class="btn btn-outline text-transform-btn active" style="flex:1" data-transform="none" title="Normal">Aa</button>
+                    <button class="btn btn-outline text-transform-btn" style="flex:1" data-transform="uppercase" title="UPPERCASE">AA</button>
+                    <button class="btn btn-outline text-transform-btn" style="flex:1" data-transform="lowercase" title="lowercase">aa</button>
+                    <button class="btn btn-outline text-transform-btn" style="flex:1" data-transform="capitalize" title="Capitalize">Aa</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Text Alignment</label>
+                  <div style="display:flex;gap:4px">
+                    <button class="btn btn-outline align-toggle" style="flex:1" data-align="left" title="Align Left"><i class="fas fa-align-left"></i></button>
+                    <button class="btn btn-outline align-toggle active" style="flex:1" data-align="center" title="Align Center"><i class="fas fa-align-center"></i></button>
+                    <button class="btn btn-outline align-toggle" style="flex:1" data-align="right" title="Align Right"><i class="fas fa-align-right"></i></button>
+                    <button class="btn btn-outline align-toggle" style="flex:1" data-align="justify" title="Justify"><i class="fas fa-align-justify"></i></button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Font Weight</label>
+                  <select class="form-select" id="textFontWeight">
+                    <option value="300">Light (300)</option>
+                    <option value="400" selected>Regular (400)</option>
+                    <option value="500">Medium (500)</option>
+                    <option value="600">Semi Bold (600)</option>
+                    <option value="700">Bold (700)</option>
+                    <option value="800">Extra Bold (800)</option>
+                  </select>
+                </div>
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">Letter Spacing (px)</label>
+                    <input type="number" class="form-input" id="textLetterSpacing" value="0" min="-5" max="30" step="0.5">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Line Height</label>
+                    <input type="number" class="form-input" id="textLineHeight" value="1.5" min="0.5" max="3" step="0.1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Text Shadow</label>
+                  <select class="form-select" id="textShadowSelect">
+                    <option value="none">No Shadow</option>
+                    <option value="1px 1px 2px rgba(0,0,0,0.3)">Soft Shadow</option>
+                    <option value="2px 2px 4px rgba(0,0,0,0.4)">Medium Shadow</option>
+                    <option value="0 2px 8px rgba(0,0,0,0.3)">Bottom Glow</option>
+                  </select>
+                </div>
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">Border Width (px)</label>
+                    <input type="number" class="form-input" id="textBorderRange" value="0" min="0" max="15">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Border Color</label>
+                    <input type="color" class="form-input" id="textBorderColorInput" value="#000000" style="padding:2px 6px;height:38px;">
+                  </div>
+                </div>
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">Border Radius (px)</label>
+                    <input type="range" class="form-input" id="textBorderRadiusRange" min="0" max="100" value="0">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Opacity (%)</label>
+                    <input type="range" class="form-input" id="textOpacityRange" min="0" max="100" value="100">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Position (px)</label>
+                  <div class="designer-size-row">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">X</label>
+                      <input type="number" class="form-input" id="textPosX" value="0">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Y</label>
+                      <input type="number" class="form-input" id="textPosY" value="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Size (px)</label>
+                  <div class="designer-size-row">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Width</label>
+                      <input type="number" class="form-input" id="textSizeW" value="200" min="20">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Height</label>
+                      <input type="number" class="form-input" id="textSizeH" value="50" min="20">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Rotation <span id="rotationDegreeLabel" style="font-weight:400;color:var(--text-muted)">0°</span></label>
+                  <input type="range" class="form-input" id="textRotationRange" min="0" max="360" value="0">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Layer</label>
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1" id="tpBtnBringForward" title="Bring Forward"><i class="fas fa-arrow-up"></i> Bring Forward</button>
+                    <button class="btn btn-outline" style="flex:1" id="tpBtnSendBackward" title="Send Backward"><i class="fas fa-arrow-down"></i> Send Backward</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1" id="tpBtnToggleVisibility" title="Toggle Visibility"><i class="fas fa-eye"></i> <span id="visibilityBtnText">Hide</span></button>
+                    <button class="btn btn-outline" style="flex:1" id="tpBtnLockObject" title="Lock/Unlock"><i class="fas fa-lock-open"></i> <span id="lockBtnText">Lock</span></button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;color:var(--primary)" id="tpBtnDuplicateObject"><i class="fas fa-copy"></i> Duplicate</button>
+                    <button class="btn btn-outline" style="flex:1;color:var(--error)" id="tpBtnDeleteObject"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveTextElement()"><i class="fas fa-check-circle"></i> Save Changes</button>
+              </div>
+            </div>
+
+            <!-- SELECTED IMAGE/SIGNATURE PROPERTIES -->
+            <div class="designer-collapsible-section image-properties-section" id="imagePropertiesSection" style="display:none">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-image" style="width:18px"></i> Selected Image Properties</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body">
+                <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px">Select an image/signature on the canvas to edit its properties.</p>
+                <div class="form-group">
+                  <label class="form-label">Element Label / Title</label>
+                  <input type="text" class="form-input" id="imageInputLabel" placeholder="e.g. Director, HR Manager...">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Upload Image</label>
+                  <div class="designer-upload-box" id="selectedImageDropZone" style="padding:15px;text-align:center;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;">
+                    <i class="fas fa-upload" style="font-size:20px;color:var(--text-muted);margin-bottom:8px;"></i>
+                    <span style="font-size:11px;display:block;">Click to Upload Image</span>
+                    <input type="file" id="selectedImageUploadInput" accept="image/*" style="display:none">
+                  </div>
+                </div>
+                
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">Width (px)</label>
+                    <input type="number" class="form-input" id="imageSizeW" value="120" min="20">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Height (px)</label>
+                    <input type="number" class="form-input" id="imageSizeH" value="60" min="20">
+                  </div>
+                </div>
+                
+                <div class="font-controls-group">
+                  <div class="form-group">
+                    <label class="form-label">X Position</label>
+                    <input type="number" class="form-input" id="imagePosX" value="0">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Y Position</label>
+                    <input type="number" class="form-input" id="imagePosY" value="0">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Opacity (%)</label>
+                  <input type="range" class="form-input" id="imageOpacityRange" min="0" max="100" value="100">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Rotation <span id="imageRotationDegreeLabel" style="font-weight:400;color:var(--text-muted)">0°</span></label>
+                  <input type="range" class="form-input" id="imageRotationRange" min="0" max="360" value="0">
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Layer</label>
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1" id="imgBtnBringForward" title="Bring Forward"><i class="fas fa-arrow-up"></i> Bring Forward</button>
+                    <button class="btn btn-outline" style="flex:1" id="imgBtnSendBackward" title="Send Backward"><i class="fas fa-arrow-down"></i> Send Backward</button>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1" id="imgBtnToggleVisibility" title="Toggle Visibility"><i class="fas fa-eye"></i> <span id="imgVisibilityBtnText">Hide</span></button>
+                    <button class="btn btn-outline" style="flex:1" id="imgBtnLockObject" title="Lock/Unlock"><i class="fas fa-lock-open"></i> <span id="imgLockBtnText">Lock</span></button>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;color:var(--primary)" id="imgBtnDuplicateObject"><i class="fas fa-copy"></i> Duplicate</button>
+                    <button class="btn btn-outline" style="flex:1;color:var(--error)" id="imgBtnDeleteObject"><i class="fas fa-trash"></i> Delete</button>
+                  </div>
+                </div>
+                
+                <button class="designer-section-save-btn" onclick="Designer.saveImageElement()"><i class="fas fa-check-circle"></i> Save Changes</button>
+              </div>
+            </div>
+
+            <!-- BORDERS (canvas border, default OFF) -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-border-all" style="width:18px"></i> Borders</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body">
+                <div class="designer-toggle">
+                  <label>Enable Border</label>
+                  <div class="designer-toggle-switch">
+                    <input type="checkbox" id="borderEnableToggle">
+                    <span class="designer-toggle-slider"></span>
+                  </div>
+                </div>
+                <div id="borderControls" style="display:none">
+                  <div class="form-group">
+                    <label class="form-label">Border Style</label>
+                    <select class="form-select" id="borderStyleSelect">
+                      <option value="solid">Solid</option>
+                      <option value="double">Double</option>
+                      <option value="dashed">Dashed</option>
+                      <option value="dotted">Dotted</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Border Color</label>
+                    <input type="color" class="form-input" id="borderColorInput" value="#1565C0" style="padding:2px 6px;height:38px;">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Border Width (px)</label>
+                    <input type="range" class="form-input" id="borderWidthRange" min="0" max="40" value="4">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Border Radius (px)</label>
+                    <input type="range" class="form-input" id="borderRadiusRange" min="0" max="100" value="0">
+                  </div>
+                </div>
+                <button class="designer-section-save-btn" onclick="Designer.saveSection('borders')"><i class="fas fa-save"></i> Save Border Settings</button>
+              </div>
+            </div>
+
+            <!-- WATERMARK -->
+            <div class="designer-collapsible-section">
+              <div class="designer-section-header" onclick="Designer.toggleCollapsible(this)">
+                <span><i class="fas fa-copyright" style="width:18px"></i> Watermark</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="designer-section-body">
+                <div class="designer-image-preview-card" id="wmPreviewCard" style="display:none">
+                  <img id="wmPreviewImg" alt="Watermark">
+                  <div class="designer-image-preview-info">
+                    <div class="name" id="wmFileName">watermark.png</div>
+                    <div class="size" id="wmFileSize">0 KB</div>
+                  </div>
+                  <div class="designer-image-preview-actions">
+                    <button onclick="Designer.removeWatermark()" class="btn-danger" title="Remove"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+                <div class="designer-dropzone" id="wmDropZone">
+                  <div class="designer-dropzone-content">
+                    <i class="fas fa-copyright"></i>
+                    <span>Upload Watermark Image</span>
+                    <span class="dz-sub">JPG, PNG, WebP &bull; Max 5MB</span>
+                  </div>
+                </div>
+                <input type="file" id="wmUploadInput" accept="image/jpeg,image/jpg,image/png,image/webp" style="display:none">
+
+                <div class="form-group" style="margin-top:12px">
+                  <label class="form-label">Watermark Image</label>
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;font-size:12px" onclick="document.getElementById('wmUploadInput').click()"><i class="fas fa-upload"></i> Replace</button>
+                    <button class="btn btn-outline" style="flex:1;font-size:12px;color:var(--error)" onclick="Designer.removeWatermark()"><i class="fas fa-trash"></i> Remove</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Size &amp; Scale</label>
+                  <div class="designer-size-row">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Width (px)</label>
+                      <input type="number" class="form-input" id="wmWidth" value="200" min="10" max="2000">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Height (px)</label>
+                      <input type="number" class="form-input" id="wmHeight" value="200" min="10" max="2000">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="designer-size-row">
+                    <div class="form-group" style="flex:3">
+                      <label class="form-label">Scale <span id="wmScaleLabel">100%</span></label>
+                      <input type="range" class="form-input" id="wmScaleRange" min="10" max="300" value="100">
+                    </div>
+                    <div class="form-group" style="flex:1">
+                      <label class="form-label" style="font-size:10px">&nbsp;</label>
+                      <div class="designer-toggle-switch">
+                        <label class="form-label" style="font-size:10px;margin:0">Lock Ratio</label>
+                        <input type="checkbox" id="wmAspectToggle" checked>
+                        <span class="designer-toggle-slider" style="width:32px;height:18px"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Position</label>
+                  <div class="designer-size-row">
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">X (px)</label>
+                      <input type="number" class="form-input" id="wmPosX" value="0">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" style="font-size:10px">Y (px)</label>
+                      <input type="number" class="form-input" id="wmPosY" value="0">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Rotation <span id="wmRotationLabel" style="font-weight:400;color:var(--text-muted)">0°</span></label>
+                  <input type="range" class="form-input" id="wmRotationRange" min="0" max="360" value="0">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Opacity <span id="wmOpacityLabel">15%</span></label>
+                  <input type="range" class="form-input" id="wmOpacityRange" min="0" max="100" value="15">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Layer</label>
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;font-size:12px" id="wmBringForward"><i class="fas fa-arrow-up"></i> Bring Forward</button>
+                    <button class="btn btn-outline" style="flex:1;font-size:12px" id="wmSendBackward"><i class="fas fa-arrow-down"></i> Send Backward</button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;font-size:12px" id="wmToggleVisibility"><i class="fas fa-eye"></i> <span id="wmVisibilityText">Hide</span></button>
+                    <button class="btn btn-outline" style="flex:1;font-size:12px" id="wmToggleLock"><i class="fas fa-lock-open"></i> <span id="wmLockText">Lock</span></button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex;gap:6px">
+                    <button class="btn btn-outline" style="flex:1;font-size:12px;color:var(--warning)" id="wmResetBtn"><i class="fas fa-undo"></i> Reset</button>
+                    <button class="designer-section-save-btn" style="flex:1;margin-top:0" onclick="Designer.saveSection('watermark')"><i class="fas fa-save"></i> Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layers Panel -->
+          <div class="designer-tab-pane" id="tabLayers">
+            <div class="designer-section-label">Layer Hierarchy</div>
+            <p style="font-size:11px;color:var(--text-muted);margin-bottom:12px">Re-order layer rendering priority (top elements rendered on top).</p>
+            <div id="layersList"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Canvas Area Workspace -->
+      <div class="designer-workspace-container">
+        <!-- Top Toolbar toolbar controls -->
+        <div class="designer-toolbar">
+          <div class="designer-toolbar-group">
+            <button class="designer-tool-btn" id="btnUndo" disabled title="Undo (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+            <button class="designer-tool-btn" id="btnRedo" disabled title="Redo (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="designer-tool-btn" id="btnZoomOut" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+            <span class="zoom-indicator" id="zoomText">100%</span>
+            <button class="designer-tool-btn" id="btnZoomIn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+            <button class="designer-tool-btn" id="btnZoomReset" title="Reset Zoom"><i class="fas fa-expand"></i></button>
+          </div>
+
+          <div class="designer-toolbar-group">
+            <button class="designer-tool-btn" id="btnToggleGrid" title="Toggle Grid overlay"><i class="fas fa-border-all"></i></button>
+            <button class="designer-tool-btn" id="btnToggleSnap" title="Snap to Grid (10px)"><i class="fas fa-magnet"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="designer-tool-btn" id="btnBringForward" title="Bring Layer Forward"><i class="fas fa-layer-group"></i><i class="fas fa-chevron-up" style="font-size:8px;margin-left:-4px"></i></button>
+            <button class="designer-tool-btn" id="btnSendBackward" title="Send Layer Backward"><i class="fas fa-layer-group"></i><i class="fas fa-chevron-down" style="font-size:8px;margin-left:-4px"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="designer-tool-btn" id="btnDuplicateObject" title="Duplicate selected element (Ctrl+D)"><i class="fas fa-copy"></i></button>
+            <button class="designer-tool-btn" id="btnLockObject" title="Lock Selected"><i class="fas fa-lock"></i></button>
+            <button class="designer-tool-btn" id="btnDeleteObject" title="Delete selected element" style="color:var(--error)"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+
+        <!-- Canvas Infinite Scrollable viewport -->
+        <div class="designer-canvas-viewport" id="canvasViewport">
+          <!-- A4 Canvas Sheet representation -->
+          <div class="designer-canvas landscape-a4" id="designerCanvas">
+            <!-- Grid Lines Overlay -->
+            <div class="canvas-grid-overlay" id="gridOverlay"></div>
+            
+            <!-- Canvas Background Custom Borders (injected via JS if needed) -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" onclick="Templates.openAddModal()" title="Add Template"><i class="fas fa-plus"></i></button>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/designer.js"></script>
+</body>
+</html>
+

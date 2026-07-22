@@ -1,0 +1,312 @@
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -40px) rotate(90deg); }
+  50% { transform: translate(-20px, 20px) rotate(180deg); }
+  75% { transform: translate(40px, 30px) rotate(270deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@keyframes loadingDots {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease;
+}
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+.page-transition {
+  animation: fadeIn 0.4s ease, slideUp 0.4s ease;
+}
+
+/* ============================================
+   STAGGER ANIMATIONS
+   ============================================ */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner-sm { width: 20px; height: 20px; border-width: 2px; }
+.loading-spinner-lg { width: 60px; height: 60px; border-width: 4px; }
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-screen-logo {
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  animation: pulse 1.5s ease infinite;
+}
+
+.loading-screen-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.loading-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: loadingDots 1.4s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(1) { animation-delay: 0s; }
+.loading-dot:nth-child(2) { animation-delay: 0.16s; }
+.loading-dot:nth-child(3) { animation-delay: 0.32s; }
+
+/* ============================================
+   CARD HOVER EFFECT
+   ============================================ */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   SKELETON LOADER ANIMATION
+   ============================================ */
+.skeleton-wrapper {
+  padding: 16px;
+}
+
+.skeleton-card-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
+
+.skeleton-card-item .skeleton-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skeleton-card-item .skeleton-lines {
+  flex: 1;
+}
+
+.skeleton-card-item .skeleton-line {
+  height: 14px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-card-item .skeleton-line:last-child { width: 60%; }
+
+/* ============================================
+   ANIMATED STATISTICS
+   ============================================ */
+.stat-counter {
+  display: inline-block;
+}
+
+/* ============================================
+   PAGE LOAD ANIMATION FOR ELEMENTS
+   ============================================ */
+.animate-on-load {
+  opacity: 0;
+  animation: slideUp 0.6s ease forwards;
+}
+
+.animate-on-load:nth-child(1) { animation-delay: 0.05s; }
+.animate-on-load:nth-child(2) { animation-delay: 0.1s; }
+.animate-on-load:nth-child(3) { animation-delay: 0.15s; }
+.animate-on-load:nth-child(4) { animation-delay: 0.2s; }
+.animate-on-load:nth-child(5) { animation-delay: 0.25s; }
+.animate-on-load:nth-child(6) { animation-delay: 0.3s; }
+.animate-on-load:nth-child(7) { animation-delay: 0.35s; }
+.animate-on-load:nth-child(8) { animation-delay: 0.4s; }
