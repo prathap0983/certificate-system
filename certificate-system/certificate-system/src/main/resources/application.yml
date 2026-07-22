@@ -7,7 +7,7 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     hikari:
-      initialization-fail-timeout: -1
+      initialization-fail-timeout: 0
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:

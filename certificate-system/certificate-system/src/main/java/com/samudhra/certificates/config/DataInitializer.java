@@ -18,26 +18,30 @@ public class DataInitializer {
             PasswordEncoder passwords
     ) {
         return args -> {
-            if (admins.findByEmail("admin@samudhratechsolutions.com").isEmpty()) {
-                Admin admin = new Admin();
-                admin.setName("Admin");
-                admin.setEmail("admin@samudhratechsolutions.com");
-                admin.setPassword(passwords.encode("admin123"));
-                admins.save(admin);
-            }
-            if (users.findByEmail("admin@samudhratechsolutions.com").isEmpty()) {
-                Organization org = organizations.findAll().stream().findFirst().orElseGet(() -> {
-                    Organization newOrg = new Organization();
-                    newOrg.setName("Samudhra Tech Solutions");
-                    return organizations.save(newOrg);
-                });
-                User user = new User();
-                user.setName("Admin");
-                user.setEmail("admin@samudhratechsolutions.com");
-                user.setRole("ADMIN");
-                user.setPasswordHash(passwords.encode("admin123"));
-                user.setOrganization(org);
-                users.save(user);
+            try {
+                if (admins.findByEmail("admin@samudhratechsolutions.com").isEmpty()) {
+                    Admin admin = new Admin();
+                    admin.setName("Admin");
+                    admin.setEmail("admin@samudhratechsolutions.com");
+                    admin.setPassword(passwords.encode("admin123"));
+                    admins.save(admin);
+                }
+                if (users.findByEmail("admin@samudhratechsolutions.com").isEmpty()) {
+                    Organization org = organizations.findAll().stream().findFirst().orElseGet(() -> {
+                        Organization newOrg = new Organization();
+                        newOrg.setName("Samudhra Tech Solutions");
+                        return organizations.save(newOrg);
+                    });
+                    User user = new User();
+                    user.setName("Admin");
+                    user.setEmail("admin@samudhratechsolutions.com");
+                    user.setRole("ADMIN");
+                    user.setPasswordHash(passwords.encode("admin123"));
+                    user.setOrganization(org);
+                    users.save(user);
+                }
+            } catch (Exception e) {
+                System.err.println("[DataInitializer] Database connection not ready, skipping admin user seeding: " + e.getMessage());
             }
         };
     }
@@ -49,29 +53,33 @@ public class DataInitializer {
             OrganizationRepository organizations
     ) {
         return args -> {
-            if (students.count() == 0 && certificates.count() == 0) {
-                Organization org = organizations.findAll().stream().findFirst().orElseGet(() -> {
-                    Organization newOrg = new Organization();
-                    newOrg.setName("Samudhra Tech Solutions");
-                    return organizations.save(newOrg);
-                });
+            try {
+                if (students.count() == 0 && certificates.count() == 0) {
+                    Organization org = organizations.findAll().stream().findFirst().orElseGet(() -> {
+                        Organization newOrg = new Organization();
+                        newOrg.setName("Samudhra Tech Solutions");
+                        return organizations.save(newOrg);
+                    });
 
-                Student s1 = new Student();
-                s1.setName("Muzan");
-                s1.setEmail("muzan@gmail.com");
-                s1.setCourse("Computer Science");
-                s1.setRegisterNumber("REG001");
-                s1.setOrganization(org);
-                s1 = students.save(s1);
+                    Student s1 = new Student();
+                    s1.setName("Muzan");
+                    s1.setEmail("muzan@gmail.com");
+                    s1.setCourse("Computer Science");
+                    s1.setRegisterNumber("REG001");
+                    s1.setOrganization(org);
+                    s1 = students.save(s1);
 
-                Certificate c1 = new Certificate();
-                c1.setCertificateNumber("CERT101");
-                c1.setStudent(s1);
-                c1.setOrganization(org);
-                c1.setIssueDate(java.time.LocalDate.now());
-                certificates.save(c1);
+                    Certificate c1 = new Certificate();
+                    c1.setCertificateNumber("CERT101");
+                    c1.setStudent(s1);
+                    c1.setOrganization(org);
+                    c1.setIssueDate(java.time.LocalDate.now());
+                    certificates.save(c1);
 
-                System.out.println("[DataInitializer] Successfully populated database with dummy student and certificate records.");
+                    System.out.println("[DataInitializer] Successfully populated database with dummy student and certificate records.");
+                }
+            } catch (Exception e) {
+                System.err.println("[DataInitializer] Database connection not ready, skipping dummy data seeding: " + e.getMessage());
             }
         };
     }
