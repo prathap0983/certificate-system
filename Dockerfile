@@ -7,6 +7,4 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
-# Trigger new build
-# Trigger build for Render
+ENTRYPOINT ["java", "-Xmx384m", "-Xms256m", "-jar", "app.jar"]
