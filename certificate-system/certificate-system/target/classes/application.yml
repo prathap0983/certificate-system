@@ -6,9 +6,10 @@ spring:
     init:
       mode: never
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/certificate_system?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       initialization-fail-timeout: 0
   jpa:
@@ -18,10 +19,10 @@ spring:
     open-in-view: false
     properties:
       hibernate:
-        boot:
-          allow_jdbc_metadata_access: false
         temp:
           use_jdbc_metadata_defaults: false
+        boot:
+          allow_jdbc_metadata_access: false
         jdbc:
           time_zone: UTC
   servlet:
