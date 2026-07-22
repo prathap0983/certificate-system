@@ -45,8 +45,18 @@ public class SecurityConfig {
                 .cors(cors -> {})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/seed").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers(
+                                "/api/auth/**",
+                                "/api/certificates/verify/**",
+                                "/api/seed",
+                                "/uploads/**",
+                                "/",
+                                "/*.html",
+                                "/css/**",
+                                "/js/**",
+                                "/assets/**"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwt, UsernamePasswordAuthenticationFilter.class)
                 .build();
